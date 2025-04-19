@@ -1,0 +1,15 @@
+name: Ping SOPC API every 15min
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+jobs:
+  ping-api:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send GET request to ProductCategory API (no response needed)
+        run: |
+          curl -m 2 -s -o /dev/null -X GET https://spoc-api-vtv0.onrender.com/api/ProductCategory || true
